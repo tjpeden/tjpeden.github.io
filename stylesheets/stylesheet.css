@@ -245,6 +245,7 @@ form {
   margin-bottom: 8px;
   color: #474747;
 }
+
 #main-content h2:before {
   content: "//";
   color: #9ddcff;
@@ -252,6 +253,7 @@ form {
   margin-left: -1.5em;
 }
 
+#projects h3,
 #main-content h3 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
