@@ -1,13 +1,27 @@
 ---
-layout: default
-title: TJCoding.com
+layout: webvr
+title: Peden Software
 ---
 
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
+<a-scene>
+  <a-assets>
+    <!--https://www.flickr.com/photos/kevinmgill/23984949771-->
+    <img src="images/mars_rover.2048x1024.jpg" id="sky">
+  </a-assets>
+  
+  <a-sky radius="10" src="#sky" color="#ECECEC"></a-sky>
+  <a-entity text="text: Peden Software" material="color: #FFF; opacity: 0.75" position="-2 4 -6"></a-entity>
+  
+  <a-entity camera look-controls>
+    <a-cursor id="cursor"></a-cursor>
+  </a-entity camera look-controls>
+</a-scene>
+
+<!--<div id="home">-->
+<!--  <h1>Blog Posts</h1>-->
+<!--  <ul class="posts">-->
+<!--    {% for post in site.posts %}-->
+<!--      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>-->
+<!--    {% endfor %}-->
+<!--  </ul>-->
+<!--</div>-->
