@@ -1,20 +1,51 @@
 ---
 layout: webvr
 title: Peden Software
+author: TJ Peden
 ---
 
 <a-scene>
   <a-assets>
     <!--https://www.flickr.com/photos/kevinmgill/23984949771-->
-    <img src="images/mars_rover.2048x1024.jpg" id="sky">
+    <img src="/images/mars_rover.2048x1024.jpg" id="sky">
+    
+    <a-mixin id="text" bmfont-text="align: center; color: #fff"></a-mixin>
+    <a-mixin
+      id="title"
+      position="0 55 0">
+    </a-mixin>
+    <a-mixin
+      id="sphere"
+      rotation="0 -120 0"
+      geometry="primitive: sphere; radius: 50; segmentsWidth: 64; segmentsHeight: 64"
+      material="shader: flat; side: double; color: #fff">
+    </a-mixin>
   </a-assets>
   
-  <a-sky radius="10" src="#sky" color="#ECECEC"></a-sky>
-  <a-entity text="text: Peden Software" material="color: #FFF; opacity: 0.75" position="-2 4 -6"></a-entity>
+  <a-sky radius="350" src="#sky" color="#ececec"></a-sky>
+  <a-entity mixin="text" bmfont-text="text: Peden Software" position="0 4 -6"></a-entity>
   
-  <a-entity camera look-controls>
-    <a-cursor id="cursor"></a-cursor>
-  </a-entity camera look-controls>
+  <a-entity layout="type: circle; radius: 200" rotation="0 90 0">
+    {% for p in site.pages %}
+      {% if p.thumb == nil %}
+        {% continue %}
+      {% endif %}
+      <a-entity look-at="[camera]">
+        <a-entity mixin="text title" bmfont-text="text: {{ p.title }}"></a-entity>
+        <a-entity mixin="sphere" material="src: url({{ p.thumb }})">
+        </a-entity>
+      </a-entity>
+    {% endfor %}
+  </a-entity>
+  
+  <a-entity camera="far: 40000; fov: 80; near: 0.5" universal-controls="movementEnabled: false">
+    <a-cursor id="cursor" color="#4cc3d9">
+      <a-animation begin="click" easing="ease-in" attribute="scale"
+        fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+      <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+        fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+    </a-cursor>
+  </a-entity>
 </a-scene>
 
 <!--<div id="home">-->
