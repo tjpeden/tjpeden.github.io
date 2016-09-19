@@ -6,32 +6,26 @@ author: TJ Peden
 
 <a-scene>
   <a-assets>
-    <!--https://www.flickr.com/photos/kevinmgill/23984949771-->
-    <img src="/images/mars_rover.2048x1024.jpg" id="sky">
-    
-    <a-mixin id="text" bmfont-text="align: center; color: #fff"></a-mixin>
-    <a-mixin
-      id="title"
-      position="0 55 0">
-    </a-mixin>
+    <a-mixin id="text" material="color: #fff"></a-mixin>
+    <a-mixin id="title" position="0 6 -2"></a-mixin>
     <a-mixin
       id="sphere"
-      rotation="0 -120 0"
-      geometry="primitive: sphere; radius: 50; segmentsWidth: 64; segmentsHeight: 64"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 5; segmentsWidth: 64; segmentsHeight: 64"
       material="shader: flat; side: double; color: #fff">
     </a-mixin>
   </a-assets>
   
-  <a-sky radius="350" src="#sky" color="#ececec"></a-sky>
-  <a-entity mixin="text" bmfont-text="text: Peden Software" position="0 4 -6"></a-entity>
+  <a-sky color="#000"></a-sky>
+  <a-entity mixin="text" text="text: Peden Software" position="-2.5 4 -6"></a-entity>
   
-  <a-entity layout="type: circle; radius: 200" rotation="0 90 0">
+  <a-entity layout="type: circle; radius: 20" rotation="0 90 0">
     {% for p in site.pages %}
       {% if p.thumb == nil %}
         {% continue %}
       {% endif %}
-      <a-entity look-at="[camera]">
-        <a-entity mixin="text title" bmfont-text="text: {{ p.title }}"></a-entity>
+      <a-entity>
+        <a-entity mixin="text title" text="text: {{ p.title }}" rotation="0 -90 0"></a-entity>
         <a-entity mixin="sphere" material="src: url({{ p.thumb }})">
         </a-entity>
       </a-entity>
