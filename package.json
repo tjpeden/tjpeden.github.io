@@ -1,0 +1,28 @@
+{
+  "name": "tjpeden.github.io",
+  "version": "1.0.0",
+  "description": "tjpeden.github.io =================",
+  "private": true,
+  "scripts": {
+    "build": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjpeden/tjpeden.github.io.git"
+  },
+  "author": "TJ Peden <tj@tjcoding.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjpeden/tjpeden.github.io/issues"
+  },
+  "homepage": "https://github.com/tjpeden/tjpeden.github.io#readme",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "metalsmith": "^2.2.0",
+    "metalsmith-drafts": "0.0.1",
+    "metalsmith-layouts": "^1.6.5",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-permalinks": "^0.5.0",
+    "metalsmith-redirect": "^2.1.0"
+  }
+}

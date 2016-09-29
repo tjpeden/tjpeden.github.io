@@ -1,5 +1,5 @@
 ---
-layout: webvr
+layout: webvr.html
 title: Peden Software
 author: TJ Peden
 ---
@@ -15,10 +15,10 @@ author: TJ Peden
       material="shader: flat; side: double; color: #fff">
     </a-mixin>
   </a-assets>
-  
+
   <a-sky color="#000"></a-sky>
   <a-entity mixin="text" text="text: Peden Software" position="-2.5 4 -6"></a-entity>
-  
+
   <a-entity layout="type: circle; radius: 20" rotation="0 90 0">
     {% for p in site.pages %}
       {% if p.thumb == nil %}
@@ -31,7 +31,7 @@ author: TJ Peden
       </a-entity>
     {% endfor %}
   </a-entity>
-  
+
   <a-entity camera="far: 40000; fov: 80; near: 0.5" universal-controls="movementEnabled: false">
     <a-cursor id="cursor" color="#4cc3d9">
       <a-animation begin="click" easing="ease-in" attribute="scale"
