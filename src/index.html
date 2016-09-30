@@ -22,10 +22,10 @@ permalink: false
 
   <a-entity layout="type: circle; radius: 20" rotation="0 90 0">
     {{#each webvr}}
-      <a-entity>
-        <a-entity mixin="text title" text="text: {{ title }}" rotation="0 -90 0"></a-entity>
-        <a-entity mixin="sphere" material="src: url({{ thumb }})"></a-entity>
-      </a-entity>
+    <a-entity>
+      <a-entity mixin="text title" text="text: {{ title }}" rotation="0 -90 0"></a-entity>
+      <a-entity mixin="sphere" material="src: url({{ thumb }})"></a-entity>
+    </a-entity>
     {{/each}}
   </a-entity>
 
