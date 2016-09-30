@@ -1,0 +1,19 @@
+<div class="read-more">
+  <div class="read-more-header">
+    <a href="{{ owner.url }}" class="read-more-btn">About the Author</a>
+  </div>
+  <div class="read-more-content author-info">
+    <h3>{{ owner.name }}</h3>
+    <div class="author-container">
+      <img src="{{ gravatar.owner }}" alt="{{ owner.name }}" class="author-img">
+      <div class="author-bio">{{ owner.bio }}</div>
+    </div>
+    <div class="author-share">
+      <ul class="list-inline social-buttons">
+        {{#each owner.networks}}
+        <li><a href="{{ url }}" target="_blank"><i class="fa fa-{{ icon }} fa-fw"></i></a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

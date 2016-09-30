@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+{{#if tags}}
+<meta name="keywords" content="{{ join tags ', ' }}">
+{{/if}}
+
+{{!-- Twitter Cards --}}
+{{#if owner.twitter}}
+{{#if feature}}
+<meta name="twitter:card" content="summary_large_image">
+{{else}}
+<meta name="twitter:card" content="summary">
+{{/if}}
+<meta name="twitter:site" content="@{{ owner.twitter }}">
+<meta name="twitter:creator" content="@{{ owner.twitter }}">
+{{/if}}
+
+{{!-- Open Graph --}}
+<meta name="og:locale" content="{{ locale }}">
+<meta name="og:type" content="article">
+<meta name="og:title" content="{{ title }}">
+<meta name="og:description" content="{{ description }}">
+<meta name="og:url" content="{{ owner.url }}">
+<meta name="og:site_name" content="{{ title }}">
+{{#if feature}}
+<meta name="og:image" content="{{ owner.url }}/images/{{ feature.image }}">
+{{else if thumb}}
+<meta name="og:image" content="{{ owner.url }}/images/{{ thumb }}">
+{{else}}
+<meta name="og:image" content="{{ owner.url }}/images/{{ logo }}">
+{{/if}}
+
+{{!-- Canonical URL --}}
+{{!-- todo --}}
+
+{{!-- Stylesheets --}}
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="stylesheet" href="/stylesheets/font-awesome.css">
+{{!-- Webfonts --}}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+{{!-- Icons --}}
+{{!-- todo --}}
+
+{{!-- Background --}}
+{{!-- todo: maybe --}}
