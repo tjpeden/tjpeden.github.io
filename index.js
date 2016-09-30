@@ -1,14 +1,15 @@
 'use strict';
 
-let Metalsmith  = require('metalsmith');
-let drafts      = require('metalsmith-drafts');
-let layouts     = require('metalsmith-layouts');
-let inPlace     = require('metalsmith-in-place');
-let excerpts    = require('metalsmith-excerpts');
-let redirect    = require('metalsmith-redirect');
-let markdown    = require('metalsmith-markdown');
-let permalinks  = require('metalsmith-permalinks');
-let collections = require('metalsmith-collections');
+const Metalsmith  = require('metalsmith');
+const drafts      = require('metalsmith-drafts');
+const assets      = require('metalsmith-assets');
+const layouts     = require('metalsmith-layouts');
+const inPlace     = require('metalsmith-in-place');
+const excerpts    = require('metalsmith-excerpts');
+const redirect    = require('metalsmith-redirect');
+const markdown    = require('metalsmith-markdown');
+const permalinks  = require('metalsmith-permalinks');
+const collections = require('metalsmith-collections');
 
 Metalsmith(__dirname)
 .metadata({
@@ -22,6 +23,8 @@ Metalsmith(__dirname)
 .clean(true)
 .use(drafts())
 .use(markdown())
+.use(excerpts())
+.use(collections())
 .use(permalinks({
   pattern: ':title',
   linksets: [
@@ -31,8 +34,6 @@ Metalsmith(__dirname)
     },
   ],
 }))
-.use(excerpts())
-.use(collections())
 .use(inPlace({
   engine: 'handlebars',
 }))
@@ -43,4 +44,5 @@ Metalsmith(__dirname)
 .use(redirect({
   '/2016/09/13/on-the-fence.html': '/on-the-fence',
 }))
+.use(assets())
 .build((error, files) => { if(error) { throw error; } });
