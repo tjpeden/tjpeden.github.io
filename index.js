@@ -44,5 +44,7 @@ Metalsmith(__dirname)
 .use(redirect({
   '/2016/09/13/on-the-fence.html': '/on-the-fence',
 }))
-.use(assets())
+.use(assets({
+  source: './assets',
+}))
 .build((error, files) => { if(error) { throw error; } });

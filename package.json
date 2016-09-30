@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "tjpeden.github.io =================",
   "private": true,
+  "main": "index.js",
   "scripts": {
-    "build": "node index.js",
-    "deploy": "./deploy.sh"
+    "prestart": "npm install",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
