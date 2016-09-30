@@ -1,9 +1,23 @@
----
-layout: webvr
-title: Peden Software
-author: TJ Peden
----
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <title>Peden Software</title>
+
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+  </head>
+  <body>
+    
 <a-scene>
   <a-assets>
     <a-mixin id="text" material="color: #fff"></a-mixin>
@@ -15,23 +29,17 @@ author: TJ Peden
       material="shader: flat; side: double; color: #fff">
     </a-mixin>
   </a-assets>
-  
+
   <a-sky color="#000"></a-sky>
   <a-entity mixin="text" text="text: Peden Software" position="-2.5 4 -6"></a-entity>
-  
+
   <a-entity layout="type: circle; radius: 20" rotation="0 90 0">
-    {% for p in site.pages %}
-      {% if p.thumb == nil %}
-        {% continue %}
-      {% endif %}
-      <a-entity>
-        <a-entity mixin="text title" text="text: {{ p.title }}" rotation="0 -90 0"></a-entity>
-        <a-entity mixin="sphere" material="src: url({{ p.thumb }})">
-        </a-entity>
-      </a-entity>
-    {% endfor %}
+    <a-entity>
+      <a-entity mixin="text title" text="text: On The Fence" rotation="0 -90 0"></a-entity>
+      <a-entity mixin="sphere" material="src: url(/images/on-the-fence-preview.png)"></a-entity>
+    </a-entity>
   </a-entity>
-  
+
   <a-entity camera="far: 40000; fov: 80; near: 0.5" universal-controls="movementEnabled: false">
     <a-cursor id="cursor" color="#4cc3d9">
       <a-animation begin="click" easing="ease-in" attribute="scale"
@@ -42,11 +50,5 @@ author: TJ Peden
   </a-entity>
 </a-scene>
 
-<!--<div id="home">-->
-<!--  <h1>Blog Posts</h1>-->
-<!--  <ul class="posts">-->
-<!--    {% for post in site.posts %}-->
-<!--      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>-->
-<!--    {% endfor %}-->
-<!--  </ul>-->
-<!--</div>-->
+  </body>
+</html>
