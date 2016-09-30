@@ -1,6 +1,0 @@
-name: Peden Software
-markdown: redcarpet
-highlighter: rouge
-webrick:
-  headers:
-    Access-Control-Allow-Origin: '*'

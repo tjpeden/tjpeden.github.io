@@ -18,12 +18,11 @@ Metalsmith(__dirname)
 .destination('./public')
 .clean(true)
 .use(drafts())
+.use(markdown())
 .use(layouts({
   engine: 'handlebars',
   default: 'default.html',
-  directory: './layouts',
 }))
-.use(markdown())
 .use(permalinks({
   pattern: ':title',
   linksets: [
