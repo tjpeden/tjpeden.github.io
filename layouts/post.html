@@ -4,14 +4,14 @@
     {{> head}}
   </head>
   <body id="post" {{#if feature}}class="feature"{{/if}}>
-    {{!-- todo: header --}}
+    <!-- TODO: Header -->
 
     <div id="main" role="main">
       <article class="hentry">
         <div class="entry-content">
           {{#if feature}}
           <div class="entry-image-index">
-            <img src="{{ owner.url }}/images/{{ feature.image }}" alt="{{ title }}">
+            <img src="{{ site.url }}/images/{{ feature.image }}" alt="{{ title }}">
             {{#if feature.credit}}
             <div class="image-credit">
               Image source:
@@ -25,15 +25,15 @@
           <h1 class="post-title entry-title">{{ title }}</h1>
           {{{ contents }}}
           <footer class="entry-meta">
-            {{!-- todo: tags --}}
-            <span class="author vcard"><span class="fn">{{ owner.name }}</span></span>
-            {{!-- todo: social-share --}}
+            <!-- TODO: Tags -->
+            <span class="author vcard"><span class="fn">{{ site.owner.name }}</span></span>
+            <!-- TODO: Social Share -->
           </footer>
         </div>
         {{> author}}
         {{#if comments}}
         {{#if discus}}
-        section#disqus_thread
+        <section id="disqus_thread"></section>
         {{/if}}
         {{/if}}
       </article>

@@ -2,49 +2,46 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>{{ title }}</title>
-<meta name="description" content="{{ description }}">
+<title>{{#if title}}{{ title }} &#8211; {{/if}}{{ site.title }}</title>
+<meta name="description" content="{{#if description}}{{ description }}{{else}}{{ site.description}}{{/if}}">
 {{#if tags}}
 <meta name="keywords" content="{{ join tags ', ' }}">
 {{/if}}
 
-{{!-- Twitter Cards --}}
-{{#if owner.twitter}}
+<!-- Twitter Cards -->
+{{#if site.owner.twitter}}
 {{#if feature}}
 <meta name="twitter:card" content="summary_large_image">
 {{else}}
 <meta name="twitter:card" content="summary">
 {{/if}}
-<meta name="twitter:site" content="@{{ owner.twitter }}">
-<meta name="twitter:creator" content="@{{ owner.twitter }}">
+<meta name="twitter:site" content="@{{ site.owner.twitter }}">
+<meta name="twitter:creator" content="@{{ site.owner.twitter }}">
 {{/if}}
 
-{{!-- Open Graph --}}
-<meta name="og:locale" content="{{ locale }}">
+<!-- Open Graph -->
+<meta name="og:locale" content="{{ site.locale }}">
 <meta name="og:type" content="article">
-<meta name="og:title" content="{{ title }}">
-<meta name="og:description" content="{{ description }}">
-<meta name="og:url" content="{{ owner.url }}">
-<meta name="og:site_name" content="{{ title }}">
+<meta name="og:title" content="{{#if title}}{{ title }}{{else}}{{ site.title }}{{/if}}">
+<meta name="og:description" content="{{#if description}}{{ description }}{{else}}{{ site.description}}{{/if}}">
+<meta name="og:url" content="{{ site.owner.url }}{{path}}">
+<meta name="og:site_name" content="{{ site.title }}">
 {{#if feature}}
-<meta name="og:image" content="{{ owner.url }}/images/{{ feature.image }}">
+<meta name="og:image" content="{{ site.url }}/images/{{ feature.image }}">
 {{else if thumb}}
-<meta name="og:image" content="{{ owner.url }}/images/{{ thumb }}">
+<meta name="og:image" content="{{ site.url }}/images/{{ thumb }}">
 {{else}}
-<meta name="og:image" content="{{ owner.url }}/images/{{ logo }}">
+<meta name="og:image" content="{{ site.url }}/images/{{ site.logo }}">
 {{/if}}
 
-{{!-- Canonical URL --}}
-{{!-- todo --}}
+<!-- TODO: Canonical URL -->
 
-{{!-- Stylesheets --}}
-<link rel="stylesheet" href="/stylesheets/main.css">
-<link rel="stylesheet" href="/stylesheets/font-awesome.css">
-{{!-- Webfonts --}}
+<!-- Stylesheets -->
+<link rel="stylesheet" href="{{ site.url }}/stylesheets/main.css">
+<link rel="stylesheet" href="{{ site.url }}/stylesheets/font-awesome.css">
+<!-- Webfonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-{{!-- Icons --}}
-{{!-- todo --}}
+<!-- TODO: Icons -->
 
-{{!-- Background --}}
-{{!-- todo: maybe --}}
+<!-- TODO: Background -->

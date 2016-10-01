@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+  <body id="page">
+    <!-- TODO: Header -->
+
+    <div id="main" role="main">
+      <article class="hentry">
+        <div class="entry-content">
+          {{{ contents }}}
+          <footer class="entry-meta">
+            <span class="author vcard"><span class="fn">{{site.owner.name}}</span></span>
+            <!-- TODO: Social Share -->
+          </footer>
+        </div>
+      </article>
+    </div>
+
+    {{> scripts}}
+
+    <div class="footer-wrapper">
+      <footer class="contentinfo">
+        {{> footer}}
+      </footer>
+    </div>
+  </body>
+</html>
