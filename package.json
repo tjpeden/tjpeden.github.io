@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "node ."
+    "start": "node .",
+    "browser_sync": "browser-sync start --server public --browser=chrome",
+    "dev": "npm run browser_sync & NODE_ENV=development nodemon --exec 'npm start && browser-sync reload'"
   },
   "repository": {
     "type": "git",
@@ -19,10 +21,14 @@
   },
   "homepage": "https://github.com/tjpeden/tjpeden.github.io#readme",
   "dependencies": {
+    "browser-sync": "^2.17.0",
+    "gulp-sass": "^2.3.2",
     "handlebars": "^4.0.5",
     "metalsmith": "^2.2.0",
     "metalsmith-assets": "^0.1.0",
     "metalsmith-collections": "^0.7.0",
+    "metalsmith-discover-helpers": "^0.1.0",
+    "metalsmith-discover-partials": "^0.1.0",
     "metalsmith-drafts": "0.0.1",
     "metalsmith-excerpts": "^1.1.0",
     "metalsmith-gravatar": "^0.1.0",
@@ -31,6 +37,7 @@
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-permalinks": "^0.5.0",
     "metalsmith-redirect": "^2.1.0",
-    "moment": "^2.15.1"
+    "moment": "^2.15.1",
+    "nodemon": "^1.10.2"
   }
 }

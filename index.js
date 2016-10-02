@@ -1,18 +1,18 @@
 'use strict';
 
-const Metalsmith  = require('metalsmith');
-const drafts      = require('metalsmith-drafts');
-const assets      = require('metalsmith-assets');
-const layouts     = require('metalsmith-layouts');
-const inPlace     = require('metalsmith-in-place');
-const gravatar    = require('metalsmith-gravatar');
-const excerpts    = require('metalsmith-excerpts');
-const redirect    = require('metalsmith-redirect');
-const markdown    = require('metalsmith-markdown');
-const permalinks  = require('metalsmith-permalinks');
-const collections = require('metalsmith-collections');
-
-require('./helpers');
+const Metalsmith       = require('metalsmith');
+const drafts           = require('metalsmith-drafts');
+const assets           = require('metalsmith-assets');
+const layouts          = require('metalsmith-layouts');
+const inPlace          = require('metalsmith-in-place');
+const gravatar         = require('metalsmith-gravatar');
+const excerpts         = require('metalsmith-excerpts');
+const redirect         = require('metalsmith-redirect');
+const markdown         = require('metalsmith-markdown');
+const permalinks       = require('metalsmith-permalinks');
+const collections      = require('metalsmith-collections');
+const discoverHelpers  = require('metalsmith-discover-helpers');
+const discoverPartials = require('metalsmith-discover-partials');
 
 Metalsmith(__dirname)
 .metadata({
@@ -72,7 +72,7 @@ Metalsmith(__dirname)
   },
 })
 .destination('./public')
-.clean(true)
+.clean(false)
 .use(drafts())
 .use(markdown())
 .use(excerpts())
@@ -89,13 +89,14 @@ Metalsmith(__dirname)
     },
   ],
 }))
+.use(discoverHelpers())
+.use(discoverPartials())
 .use(inPlace({
   engine: 'handlebars',
 }))
 .use(layouts({
   engine: 'handlebars',
   default: 'page.html',
-  partials: 'partials',
 }))
 .use(redirect({
   '/2016/09/13/on-the-fence.html': '/on-the-fence',
