@@ -4,7 +4,7 @@
     {{> head}}
   </head>
   <body id="post-index">
-    <!-- TODO: Header -->
+    {{> header}}
 
     <div id="main" role="main">
       {{{ contents }}}
@@ -12,10 +12,6 @@
 
     {{> scripts}}
 
-    <div class="footer-wrapper">
-      <footer class="contentinfo">
-        {{> footer}}
-      </footer>
-    </div>
+    {{> footer}}
   </body>
 </html>

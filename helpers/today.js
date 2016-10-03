@@ -1,3 +1,3 @@
-module.exports = (options) => {
+module.exports = () => {
   return new Date();
 }

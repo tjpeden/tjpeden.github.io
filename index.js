@@ -1,27 +1,35 @@
 'use strict';
 
-const Metalsmith       = require('metalsmith');
-const drafts           = require('metalsmith-drafts');
-const assets           = require('metalsmith-assets');
-const layouts          = require('metalsmith-layouts');
-const inPlace          = require('metalsmith-in-place');
-const paginate         = require('metalsmith-paginate');
-const gravatar         = require('metalsmith-gravatar');
-const excerpts         = require('metalsmith-excerpts');
-const redirect         = require('metalsmith-redirect');
-const markdown         = require('metalsmith-markdown');
-const permalinks       = require('metalsmith-permalinks');
-const collections      = require('metalsmith-collections');
-const discoverHelpers  = require('metalsmith-discover-helpers');
-const discoverPartials = require('metalsmith-discover-partials');
+const Metalsmith         = require('metalsmith');
+const prism              = require('metalsmith-prism');
+const drafts             = require('metalsmith-drafts');
+const assets             = require('metalsmith-assets');
+const layouts            = require('metalsmith-layouts');
+const inPlace            = require('metalsmith-in-place');
+const paginate           = require('metalsmith-paginate');
+const gravatar           = require('metalsmith-gravatar');
+const excerpts           = require('metalsmith-excerpts');
+const redirect           = require('metalsmith-redirect');
+const permalinks         = require('metalsmith-permalinks');
+const collections        = require('metalsmith-collections');
+const discoverHelpers    = require('metalsmith-discover-helpers');
+const discoverPartials   = require('metalsmith-discover-partials');
+const markdownRemarkable = require('metalsmith-markdown-remarkable');
+
+const remarkableEmoji    = require('remarkable-emoji');
+const remarkableMentions = require('remarkable-mentions');
 
 Metalsmith(__dirname)
 .metadata({
   site: {
     // Site Info
     title: "Peden Software",
-    description: "Projects and Experiments by TJ Peden",
-    url: "http://peden.software",
+    description: "Projects and Experiments",
+    url: "http://localhost:3006",
+    // url: "http://peden.software",
+
+    reading_time: true,
+    words_per_minute: 200,
 
     disqus: 'peden-software',
     google_analytics: 'UA-85015540-1',
@@ -29,6 +37,15 @@ Metalsmith(__dirname)
     // Site Locale Info
     timezone: 'America/Chicago',
     locale: 'en_US',
+
+    // Site Menu
+    menu: [{
+      title: 'Blog',
+      url: '/blog',
+    }, {
+      title: 'Home',
+      url: '/',
+    }],
 
     // Generator Info
     generator: {
@@ -72,10 +89,22 @@ Metalsmith(__dirname)
     },
   },
 })
+// .source('./content')
 .destination('./public')
 .clean(true)
 .use(drafts())
-.use(markdown())
+.use(
+  markdownRemarkable('full', {
+    html: true,
+    linkify: true,
+    typographer: true,
+  })
+  .use(remarkableEmoji)
+  .use(remarkableMentions())
+)
+.use(prism({
+  lineNumbers: true,
+}))
 .use(excerpts())
 .use(collections())
 .use(gravatar({

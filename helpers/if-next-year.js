@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-module.exports = (date, next, options) => {
+module.exports = function(date, next, options) {
   if(!moment(date).isSame(next)) {
     return options.fn(this);
   } else {

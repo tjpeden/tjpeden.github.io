@@ -1,3 +1,3 @@
-module.exports = (list, separator, options) => {
+module.exports = (list, separator) => {
   return list.join(separator);
 };

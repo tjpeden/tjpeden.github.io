@@ -4,7 +4,7 @@
     {{> head}}
   </head>
   <body id="post" {{#if feature}}class="feature"{{/if}}>
-    <!-- TODO: Header -->
+    {{> header}}
 
     <div id="main" role="main">
       <article class="entry">
@@ -41,10 +41,6 @@
 
     {{> scripts}}
 
-    <div class="footer-wrapper">
-      <footer role="contentinfo">
-        {{> footer}}
-      </footer>
-    </div>
+    {{> footer}}
   </body>
 </html>
