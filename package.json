@@ -7,7 +7,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node .",
-    "browser_sync": "browser-sync start --server public --browser=chrome",
+    "browser_sync": "browser-sync start --server public --browser=google-chrome",
     "dev": "npm run browser_sync & NODE_ENV=development nodemon --exec 'npm start && browser-sync reload'"
   },
   "repository": {
@@ -35,9 +35,13 @@
     "metalsmith-in-place": "^1.4.4",
     "metalsmith-layouts": "^1.6.5",
     "metalsmith-markdown": "^0.2.1",
+    "metalsmith-paginate": "^0.3.0",
     "metalsmith-permalinks": "^0.5.0",
     "metalsmith-redirect": "^2.1.0",
     "moment": "^2.15.1",
     "nodemon": "^1.10.2"
+  },
+  "devDependencies": {
+    "gulp-debug": "^2.1.2"
   }
 }

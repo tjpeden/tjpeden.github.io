@@ -5,6 +5,7 @@ const drafts           = require('metalsmith-drafts');
 const assets           = require('metalsmith-assets');
 const layouts          = require('metalsmith-layouts');
 const inPlace          = require('metalsmith-in-place');
+const paginate         = require('metalsmith-paginate');
 const gravatar         = require('metalsmith-gravatar');
 const excerpts         = require('metalsmith-excerpts');
 const redirect         = require('metalsmith-redirect');
@@ -20,7 +21,7 @@ Metalsmith(__dirname)
     // Site Info
     title: "Peden Software",
     description: "Projects and Experiments by TJ Peden",
-    url: "http://peden.software/",
+    url: "http://peden.software",
 
     disqus: 'peden-software',
     google_analytics: 'UA-85015540-1',
@@ -44,7 +45,7 @@ Metalsmith(__dirname)
     // Owner Info
     owner: {
       name: "TJ Peden",
-      url: "http://peden.software/",
+      url: "http://peden.software",
       bio: "I'm a software developer, programming language enthusiast, hardware and software guru, tech fanatic.",
       twitter: 'tjpeden',
       networks: [{
@@ -72,7 +73,7 @@ Metalsmith(__dirname)
   },
 })
 .destination('./public')
-.clean(false)
+.clean(true)
 .use(drafts())
 .use(markdown())
 .use(excerpts())
@@ -88,6 +89,9 @@ Metalsmith(__dirname)
       pattern: 'blog/:date/:title',
     },
   ],
+}))
+.use(paginate({
+  path: 'blog/page',
 }))
 .use(discoverHelpers())
 .use(discoverPartials())

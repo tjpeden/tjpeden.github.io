@@ -4,12 +4,25 @@
 }
 
 @mixin font-size($size) {
-  @@include font-rem($size);
+  @include font-rem($size);
   line-height: 0 + round($doc-line-height / $size * 10000) / 10000;
 }
 
 @mixin font-margin($size) {
-  @@include font-size($size);
+  @include font-size($size);
   margin-bottom: 0px + $doc-line-height;
   margin-bottom: 0rem + ($doc-line-height / $doc-font-size);
+}
+
+@mixin content() {
+  @include font-margin(16);
+
+  p > a,
+  li > a {
+    border-bottom: 1px dotted lighten($link-color, 50);
+
+    &:hover {
+      border-bottom-style: solid;
+    }
+  }
 }

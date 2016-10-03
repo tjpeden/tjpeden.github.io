@@ -1,26 +1,64 @@
 ---
 layout: post-index.html
-title: Peden Software Blog
+title: Welcome to the Peden Software Blog
+description: "About my projects and experiments."
+paginate: posts
 permalink: false
 comments: false
 ---
-{{#each posts}}
-{{#if @first}}
-<article>
-  <h2 id="{{ format date 'YYYY' }}-ref">{{ format date 'YYYY' }}</h2>
-  <ul>
-{{/if}}
-    <li class="entry-title">
-      <a href="{{ site.url }}{{ path }}" title="{{ title }}">{{ title }}</a>
-    </li>
-{{#if @last}}
-  </ul>
+{{#each (limit collections.posts pagination.end pagination.start)}}
+<article class="entry">
+  <header>
+    {{#if feature}}
+    <div class="entry-image-index">
+      <a href="{{ ../site.url}}/{{ path }}" title="{{ title }}">
+        <img src="{{ ../site.url }}/images/{{ feature.image }}" alt="{{ title }}">
+      </a>
+    </div>
+    {{#if feature.credit}}
+    <div class="image-credit">
+      Image source: <a href="{{ feature.credit.url }}" target="_blank">{{ feature.credit.name }}</a>
+    </div>
+    {{/if}}
+    {{/if}}
+    <div class="entry-meta">
+      <span class="entry-date date published updated">
+        <time datetime="{{ date-to-xmlschema date }}">
+          <a href="{{ ../site.url }}/{{ path }}">{{ format date 'MMMM D, YYYY'}}</a>
+        </time>
+      </span>
+      <span class="author vcard">
+        <span class="fn">
+          <a href="{{ ../site.url }}/about/" title="About {{ ../site.owner.name }}">{{ ../site.owner.name }}</a>
+        </span>
+      </span>
+      {{#if ../site.reading_time}}
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        Reading time ~{{ readtime ../site.words_per_minute contents}}
+      </span>
+      {{/if}}
+    </div>
+    {{#if link}}
+    <h1 class="entry-title">
+      <a href="{{ ../site.url }}/{{ path }}" class="permalink" rel="bookmark" title="{{ title }}">
+        <i class="fa fa-bookmark"></i>
+      </a>
+      <a href="{{ link }}">{{ title }}</a>
+    </h1>
+    {{else}}
+    <h1 class="entry-title">
+      <a href="{{ ../site.url }}/{{ path }}" rel="bookmark" title="{{ title }}" itemprop="url">{{ title }}</a>
+    </h1>
+    {{/if}}
+  </header>
+  <div class="entry-content">
+    {{{ excerpt }}}
+    <div class="continue-reading">
+      <div markdown="0">
+        <a href="{{ ../site.url}}/{{ path }}" class="btn btn-info">Continue Reading ...</a>
+      </div>
+    </div>
+  </div>
 </article>
-{{else if-next-year date next.date}}
-  </ul>
-</article>
-<article>
-  <h2 class="year-heading" id="{{ format next.date 'YYYY' }}-ref">{{ format next.date 'YYYY' }}</h2>
-  <ul>
-{{/if}}
 {{/each}}

@@ -24,7 +24,7 @@
 <meta name="og:type" content="article">
 <meta name="og:title" content="{{#if title}}{{ title }}{{else}}{{ site.title }}{{/if}}">
 <meta name="og:description" content="{{#if description}}{{ description }}{{else}}{{ site.description}}{{/if}}">
-<meta name="og:url" content="{{ site.owner.url }}{{path}}">
+<meta name="og:url" content="{{ site.url }}/{{path}}">
 <meta name="og:site_name" content="{{ site.title }}">
 {{#if feature}}
 <meta name="og:image" content="{{ site.url }}/images/{{ feature.image }}">
@@ -37,6 +37,7 @@
 <!-- TODO: Canonical URL -->
 
 <!-- Stylesheets -->
+<link rel="stylesheet" href="{{ site.url }}/stylesheets/vendor/font-awesome/font-awesome.css">
 <link rel="stylesheet" href="{{ site.url }}/stylesheets/main.css">
 <!-- Webfonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">

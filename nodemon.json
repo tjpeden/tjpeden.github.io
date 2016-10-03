@@ -1,5 +1,5 @@
 {
- "ignore": ["site/*", "node_modules/*", "assets/*", "modules/vendor/*"],
- "ext": "js, hbs, scss, md, html, yml",
+ "ignore": ["public/*", "node_modules/*", "sass/*"],
+ "ext": "js, hbs, css, md, html",
  "no_delay": "200ms"
 }

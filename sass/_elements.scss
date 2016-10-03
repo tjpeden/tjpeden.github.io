@@ -18,3 +18,16 @@
     background-color: $white;
   }
 }
+.btn-info {
+  color: $white;
+  background-color: $info;
+  border-color: $info;
+
+  &:visited {
+    color: $white;
+  }
+  &:hover {
+    color: $info;
+    background-color: $white;
+  }
+}
