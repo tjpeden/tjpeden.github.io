@@ -18,15 +18,16 @@
     <meta name="og:type" content="article">
     <meta name="og:title" content="Welcome to the Peden Software Blog">
     <meta name="og:description" content="About my projects and experiments.">
-    <meta name="og:url" content="http://peden.software/">
+    <meta name="og:url" content="http://localhost:3006/">
     <meta name="og:site_name" content="Peden Software">
-    <meta name="og:image" content="http://peden.software/images/">
+    <meta name="og:image" content="http://localhost:3006/images/">
     
     <!-- TODO: Canonical URL -->
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="http://peden.software/stylesheets/vendor/font-awesome/font-awesome.css">
-    <link rel="stylesheet" href="http://peden.software/stylesheets/main.css">
+    <link rel="stylesheet" href="http://localhost:3006/stylesheets/vendor/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="http://localhost:3006/stylesheets/prism-duotone-space.css">
+    <link rel="stylesheet" href="http://localhost:3006/stylesheets/main.css">
     <!-- Webfonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     
@@ -35,7 +36,42 @@
     <!-- TODO: Background -->
   </head>
   <body id="post-index">
-    <!-- TODO: Header -->
+    <div class="header-menu header-menu-top">
+      <ul class="header-item-container">
+        <li class="header-item-title header-toggle">
+          <a href="#menu"><h2><i class="fa fa-bars"></i></h2></a>
+        </li>
+        <li class="header-item-title">
+          <a href="http://localhost:3006/blog">
+            <span class="title">Peden Software</span>
+          </a>
+        </li>
+        <li class="header-item">
+          <a href="/blog" target="_blank">
+            <h3>Blog</h3>
+          </a>
+        </li>
+        <li class="header-item">
+          <a href="/" target="_blank">
+            <h3>Home</h3>
+          </a>
+        </li>
+        <li class="header-item">
+          <a href="http://localhost:3006/search">
+            <h3><i class="fa fa-search"></i></h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="entry-header">
+      <div class="header-title">
+        <div class="header-title-wrap">
+          <h1>Welcome to the Peden Software Blog</h1>
+          <h2><span class="entry-date"><time>&nbsp;</time></span></h2>
+          <p class="entry-reading-time">&nbsp;</p>
+        </div>
+      </div>
+    </div>
 
     <div id="main" role="main">
       <article class="entry">
@@ -43,24 +79,28 @@
     <div class="entry-meta">
       <span class="entry-date date published updated">
         <time datetime="2016-09-28T19:00:00-05:00">
-          <a href="http://peden.software/blog/2016/09/29/test">September 28, 2016</a>
+          <a href="http://localhost:3006/blog/2016/09/29/sample-post">September 28, 2016</a>
         </time>
       </span>
       <span class="author vcard">
         <span class="fn">
-          <a href="http://peden.software/about/" title="About TJ Peden">TJ Peden</a>
+          <a href="http://localhost:3006/about/" title="About TJ Peden">TJ Peden</a>
         </span>
+      </span>
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        Reading time ~2 minutes
       </span>
     </div>
     <h1 class="entry-title">
-      <a href="http://peden.software/blog/2016/09/29/test" rel="bookmark" title="Test" itemprop="url">Test</a>
+      <a href="http://localhost:3006/blog/2016/09/29/sample-post" rel="bookmark" title="Sample Post" itemprop="url">Sample Post</a>
     </h1>
   </header>
   <div class="entry-content">
-    <p>I&#39;m trying to test here!</p>
+    <p>Below is just about everything you&#x2019;ll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.</p>
     <div class="continue-reading">
       <div markdown="0">
-        <a href="http://peden.software/blog/2016/09/29/test" class="btn btn-info">Continue Reading ...</a>
+        <a href="http://localhost:3006/blog/2016/09/29/sample-post" class="btn btn-info">Continue Reading ...</a>
       </div>
     </div>
   </div>
