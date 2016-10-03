@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-    <title>On The Fence &#8211; Peden Software</title>
+    <title>Peden Software &#8211; Peden Software</title>
     <meta name="description" content="Projects and Experiments by TJ Peden">
     
     <!-- Twitter Cards -->
@@ -16,11 +16,11 @@
     <!-- Open Graph -->
     <meta name="og:locale" content="en_US">
     <meta name="og:type" content="article">
-    <meta name="og:title" content="On The Fence">
+    <meta name="og:title" content="Peden Software">
     <meta name="og:description" content="Projects and Experiments by TJ Peden">
-    <meta name="og:url" content="http://peden.software/on-the-fence">
+    <meta name="og:url" content="http://peden.software/peden-software">
     <meta name="og:site_name" content="Peden Software">
-    <meta name="og:image" content="http://peden.software/images/on-the-fence-preview.png">
+    <meta name="og:image" content="http://peden.software/images/">
     
     <!-- TODO: Canonical URL -->
     
@@ -45,29 +45,13 @@
   </head>
   <body>
     
+<script src="/javascripts/aframe-glow-shader.js"></script>
 <a-scene>
-  <a-assets>
-    <img src="https://img.gs/znfbqqjbcs/512x256/peden.software/images/johnson-logo-dark.png" crossorigin="anonymous" id="johnson-logo">
-
-    <a-mixin id="ground" rotation="-90 0 0" geometry="height: 20; width:20"></a-mixin>
-  </a-assets>
-
-  <a-sky radius="20" color="skyblue"></a-sky>
-
-  <a-light type="point" intensity="2" color="white" position="0 1 0"></a-light>
-  <a-light type="ambient" color="#ccc" intensity="0.6"></a-light>
-
-  <a-plane mixin="ground" material="color: blue" position="-10 -1 -10"></a-plane>
-  <a-plane mixin="ground" material="color: red" position="10 -1 -10"></a-plane>
-  <a-plane mixin="ground" material="color: gold" position="0 -1 10" width="40"></a-plane>
-
-  <a-plane src="#johnson-logo" position="0 0 1" rotation="0 180 0"></a-plane>
-
-  <a-entity text="text: If you're on the fence..." material="color: #fff" position="-3.5 2 -6"></a-entity>
-  <a-entity text="text: ...look around." material="color: #fff" position="-1 1 -6"></a-entity>
-  <a-entity text="text: #LetGaryDebate" material="color: gold" position="2.5 1.15 2" rotation="0 180 0"></a-entity>
-
-  <a-entity camera universal-controls="movement-enabled: false"></a-entity>
+  <a-sky radius="100" color="black"></a-sky>
+  <a-entity position="0 0 -15">
+    <a-sphere radius="1" color="yellow"></a-sphere>
+    <a-entity material="shader: glow-shader; glowColor: 1.0 1.0 0.0"></a-entity>
+  </a-entity>
 </a-scene>
 
   </body>
