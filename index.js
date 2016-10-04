@@ -19,13 +19,14 @@ const markdownRemarkable = require('metalsmith-markdown-remarkable');
 const remarkableEmoji    = require('remarkable-emoji');
 const remarkableMentions = require('remarkable-mentions');
 
+console.log(process.env.NODE_ENV);
 Metalsmith(__dirname)
 .metadata({
   site: {
     // Site Info
     title: "Peden Software",
     description: "Projects and Experiments",
-    url: "http://localhost:3006",
+    url: process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "http://peden.software",
     // url: "http://peden.software",
 
     reading_time: true,
