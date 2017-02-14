@@ -6,6 +6,7 @@ date: 2016-09-29
 tags: [sample post]
 collection: posts
 comments: true
+draft: true
 ---
 Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.
 
