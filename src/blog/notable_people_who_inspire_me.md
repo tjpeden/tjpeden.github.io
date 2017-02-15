@@ -27,13 +27,12 @@ speak of Musk with great reverence.
 
 ### Hank & John Green
 
-The Greens built an empire of good from a desire to [reconnect with each other][1].
-They have touched and inspired so [many people][2] with their works. Now they work
-to [educate][3] [people][4], help [others start][5] [intelligent][6],
+The Green brothers built an empire of good from a desire to [reconnect with each
+other][1]. They have touched and inspired so [many people][2] with their works. Now
+they work to [educate][3] [people][4], help [others start][5] [intelligent][6],
 [thoughtful][7] YouTube channels, as well as run the [Awesome Foundation][8]. They
 also popularized the mantra "don't forget to be awesome" (DFTBA). Not to mention the
-fact that John Green wrote the book _The Fault in Our Stars_ which was an amazing
-movie and a book I intend to read soon.
+fact that John Green is the author of the amazing novel, _The Fault in Our Stars_.
 
 ### Seán William McLoughlin (aka Jacksepticeye)
 
