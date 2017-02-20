@@ -54,20 +54,20 @@ Metalsmith(__dirname)
       url: '#',
       submenu: [{
         title: 'On The Fence',
-        url: '/on-the-fence',
+        url: 'on-the-fence',
       }]
    }, /*{
       title: 'About',
       url: '/about',
     },*/ {
       title: 'Archive',
-      url: '/posts',
+      url: 'blog/posts',
     }, {
       title: 'Blog',
-      url: '/blog',
+      url: 'blog',
     }, {
       title: 'Home',
-      url: '/',
+      url: '',
     }],
 
     // Generator Info
@@ -108,6 +108,14 @@ Metalsmith(__dirname)
         name: 'LinkedIn',
         icon: 'linkedin',
         url: "https://www.linkedin.com/in/tjpeden",
+      }, {
+        name: 'YouTube',
+        icon: 'youtube-play',
+        url: "https://www.youtube.com/TheTJPeden",
+      }, {
+        name: 'Twitch',
+        icon: 'twitch',
+        url: "https://www.twitch.tv/tjpeden",
       }],
     },
   },

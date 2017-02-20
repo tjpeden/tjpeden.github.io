@@ -13,7 +13,7 @@
     </li>
     {{#each site.menu}}
     {{#if submenu}}
-    <li class="header-item{{#if (or (and (equals url '/') (equals ../path 'index.html')) (equals url ../path))}} active{{/if}}">
+    <li class="header-item{{#if (or (and (equals url '') (equals ../path 'index.html')) (equals url ../path))}} active{{/if}}">
       <a href="{{ ../site.url }}/{{ url }}">
         <h3>{{ title }}</h3>
       </a>
@@ -22,7 +22,7 @@
         {{#if (test url 'https?://')}}
         <li class="sub-item"><a href="{{ url }}" target="_blank">{{ title }}</a></li>
         {{else}}
-        <li class="sub-item"><a href="{{../site.url }}/{{ url }}">{{ title }}</a></li>
+        <li class="sub-item"><a href="{{../../site.url }}/{{ url }}">{{ title }}</a></li>
         {{/if}}
         {{/each}}
       </ul>
@@ -34,15 +34,15 @@
       </a>
     </li>
     {{else}}
-    <li class="header-item{{#if (or (and (equals url '/') (equals ../path 'index.html')) (equals url ../path))}} active{{/if}}">
-      <a href="{{ ../site.url }}{{ url }}">
+    <li class="header-item{{#if (or (and (equals url '') (equals ../path 'index.html')) (equals url ../path))}} active{{/if}}">
+      <a href="{{ ../site.url }}/{{ url }}">
         <h3>{{ title }}</h3>
       </a>
     </li>
     {{/if}}
     {{/each}}
     <li class="header-item">
-      <a href="{{ site.url }}/search">
+      <a href="{{ site.url }}/blog/search">
         <h3><i class="fa fa-search"></i></h3>
       </a>
     </li>

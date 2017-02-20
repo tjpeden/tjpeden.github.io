@@ -1,7 +1,9 @@
 <div class="read-more">
+  {{#if next}}
   <div class="read-more-header">
     <a href="{{ site.url }}/{{ next.path }}" class="read-more-btn">Read More</a>
   </div>
+  {{/if}}
   {{#if relations.length}}
   {{#for relations limit=1}}
   <div class="read-more-content">
@@ -28,5 +30,7 @@
     </div>
     {{/for}}
   </div>
+  {{else}}
+  <p>No related posts at this time.</p>
   {{/if}}
 </div>

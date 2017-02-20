@@ -27,14 +27,15 @@
           <footer class="entry-meta">
             <!-- TODO: Tags -->
             <span class="author vcard"><span class="fn">{{ site.owner.name }}</span></span>
-            <!-- TODO: Social Share -->
           </footer>
         </div>
         {{> author}}
         {{#if (and site.disqus comments)}}
         <section id="disqus_thread"></section>
         {{/if}}
+        {{#if (or next related.length)}}
         {{> read-more}}
+        {{/if}}
       </article>
     </div>
 
