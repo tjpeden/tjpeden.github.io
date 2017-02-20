@@ -1,0 +1,14 @@
+---
+layout: aframe.html
+title: Peden Software
+collection: webvr
+---
+
+<script src="/javascripts/aframe-glow-shader.js"></script>
+<a-scene>
+  <a-sky radius="100" color="black"></a-sky>
+  <a-entity position="0 0 -15">
+    <a-sphere radius="1" color="yellow"></a-sphere>
+    <a-entity material="shader: glow-shader; glowColor: 1.0 1.0 0.0"></a-entity>
+  </a-entity>
+</a-scene>
