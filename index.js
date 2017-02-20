@@ -1,15 +1,18 @@
 'use strict';
 
 const Metalsmith         = require('metalsmith');
+const lunr               = require('metalsmith-lunr');
 const prism              = require('metalsmith-prism');
 const drafts             = require('metalsmith-drafts');
 const assets             = require('metalsmith-assets');
+const inspect            = require('metalsmith-inspect');
 const layouts            = require('metalsmith-layouts');
 const inPlace            = require('metalsmith-in-place');
 const paginate           = require('metalsmith-paginate');
 const gravatar           = require('metalsmith-gravatar');
 const excerpts           = require('metalsmith-excerpts');
 const redirect           = require('metalsmith-redirect');
+const relations          = require('metalsmith-relations')['default'];
 const permalinks         = require('metalsmith-permalinks');
 const collections        = require('metalsmith-collections');
 const discoverHelpers    = require('metalsmith-discover-helpers');
@@ -19,20 +22,26 @@ const markdownRemarkable = require('metalsmith-markdown-remarkable');
 const remarkableEmoji    = require('remarkable-emoji');
 const remarkableMentions = require('remarkable-mentions');
 
-console.log(process.env.NODE_ENV);
+const striptags          = require('striptags');
+
 Metalsmith(__dirname)
+.use(inspect({
+  disable: true,
+  includeMetalsmith: true,
+  exclude: ['contents',  'excerpt', 'stats', 'next', 'previous', 'relations'],
+}))
 .metadata({
   site: {
     // Site Info
     title: "Peden Software",
-    description: "Projects and Experiments",
-    url: process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "http://peden.software",
-    // url: "http://peden.software",
+    description: "Projects and Experiments by TJ Peden",
+    url: process.env.NODE_ENV === 'production' ? "http://peden.software" : "http://localhost:8080",
 
     reading_time: true,
     words_per_minute: 200,
 
     disqus: 'peden-software',
+    addthis: 'ra-58aa85572034f60d',
     google_analytics: 'UA-85015540-1',
 
     // Site Locale Info
@@ -40,7 +49,20 @@ Metalsmith(__dirname)
     locale: 'en_US',
 
     // Site Menu
-    menu: [{
+   menu: [{
+      title: 'Projects',
+      url: '#',
+      submenu: [{
+        title: 'On The Fence',
+        url: '/on-the-fence',
+      }]
+   }, /*{
+      title: 'About',
+      url: '/about',
+    },*/ {
+      title: 'Archive',
+      url: '/posts',
+    }, {
       title: 'Blog',
       url: '/blog',
     }, {
@@ -57,7 +79,7 @@ Metalsmith(__dirname)
     // Theme Info
     theme: {
       name: 'Neo-HPSTR Metalsmith',
-      url: "https://github.com/tjpeden/nep-hpstr-metalsmith-theme",
+      url: "https://github.com/tjpeden/neo-hpstr-metalsmith-theme",
     },
 
     // Owner Info
@@ -90,10 +112,24 @@ Metalsmith(__dirname)
     },
   },
 })
-// .source('./content')
+.source('./content')
 .destination('./public')
 .clean(true)
+.use(gravatar({
+  owner: "tj@tjcoding.com",
+}))
 .use(drafts())
+.use(collections({
+  posts: {
+    pattern: '_posts/**/*.md',
+    sortBy: 'date',
+    reverse: true,
+  }
+}))
+.use(relations({
+  max: 3,
+  match: { collection: 'posts' }
+}))
 .use(
   markdownRemarkable('full', {
     html: true,
@@ -107,12 +143,7 @@ Metalsmith(__dirname)
   lineNumbers: true,
 }))
 .use(excerpts())
-.use(collections())
-.use(gravatar({
-  owner: "tj@tjcoding.com",
-}))
 .use(permalinks({
-  pattern: ':title',
   linksets: [
     {
       match: { collection: 'posts' },
@@ -125,9 +156,7 @@ Metalsmith(__dirname)
 }))
 .use(discoverHelpers())
 .use(discoverPartials())
-.use(inPlace({
-  engine: 'handlebars',
-}))
+.use(inPlace())
 .use(layouts({
   engine: 'handlebars',
   default: 'page.html',
