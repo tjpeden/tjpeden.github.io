@@ -1,40 +1,62 @@
 ---
-layout: aframe.html
-title: Peden Software
+layout: home.html
+title: Welcome to the Peden Software Blog
+paginate: posts
 ---
 
-<a-scene>
-  <a-assets>
-    <a-mixin id="text" material="color: #fff"></a-mixin>
-    <a-mixin id="title" position="0 6 -2"></a-mixin>
-    <a-mixin
-      id="sphere"
-      rotation="0 0 0"
-      geometry="primitive: sphere; radius: 5; segmentsWidth: 64; segmentsHeight: 64"
-      material="shader: flat; side: double; color: #fff">
-    </a-mixin>
-  </a-assets>
-
-  <a-sky color="#000"></a-sky>
-  <a-entity mixin="text" text="text: Peden Software" position="-2.5 4 -6"></a-entity>
-
-  <a-entity layout="type: circle; radius: 20" rotation="0 90 0">
-    {{#each webvr}}
-    {{#if thumb}}
-    <a-entity>
-      <a-entity mixin="text title" text="text: {{ title }}" rotation="0 -90 0"></a-entity>
-      <a-entity mixin="sphere" material="src: url({{ site.url }}/images/{{ thumb }})"></a-entity>
-    </a-entity>
+{{#for collections.posts limit=pagination.end offset=pagination.start}}
+<article class="entry">
+  <header>
+    {{#if feature}}
+    <div class="entry-image-index">
+      <a href="{{ ../site.url}}/{{ path }}" title="{{ title }}">
+        <img src="{{ ../site.url }}/images/{{ feature.image }}" alt="{{ title }}">
+      </a>
+      {{#if feature.credit}}
+      <div class="image-credit">
+        Image source: <a href="{{ feature.credit.url }}" target="_blank">{{ feature.credit.name }}</a>
+      </div>
+      {{/if}}
+    </div>
     {{/if}}
-    {{/each}}
-  </a-entity>
-
-  <a-entity camera="far: 40000; fov: 80; near: 0.5" universal-controls="movementEnabled: false">
-    <a-cursor id="cursor" color="#4cc3d9">
-      <a-animation begin="click" easing="ease-in" attribute="scale"
-        fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
-      <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
-        fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
-    </a-cursor>
-  </a-entity>
-</a-scene>
+    <div class="entry-meta">
+      <span class="entry-date date published updated">
+        <time datetime="{{ date-to-xmlschema date }}">
+          <a href="{{ ../site.url }}/{{ path }}">{{ format date 'MMMM D, YYYY' }}</a>
+        </time>
+      </span>
+      <span class="author vcard">
+        <span class="fn">
+          <a href="{{ ../site.url }}/about/" title="About {{ ../site.owner.name }}">{{ ../site.owner.name }}</a>
+        </span>
+      </span>
+      {{#if ../site.reading_time}}
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        Reading time ~{{ readtime ../site.words_per_minute contents }}
+      </span>
+      {{/if}}
+    </div>
+    {{#if link}}
+    <h1 class="entry-title">
+      <a href="{{ ../site.url }}/{{ path }}" class="permalink" rel="bookmark" title="{{ title }}">
+        <i class="fa fa-bookmark"></i>
+      </a>
+      <a href="{{ link }}">{{ title }}</a>
+    </h1>
+    {{else}}
+    <h1 class="entry-title">
+      <a href="{{ ../site.url }}/{{ path }}" rel="bookmark" title="{{ title }}" itemprop="url">{{ title }}</a>
+    </h1>
+    {{/if}}
+  </header>
+  <div class="entry-content">
+    {{{ excerpt }}}
+    <div class="continue-reading">
+      <div markdown="0">
+        <a href="{{ ../site.url}}/{{ path }}" class="btn btn-info">Continue Reading ...</a>
+      </div>
+    </div>
+  </div>
+</article>
+{{/for}}

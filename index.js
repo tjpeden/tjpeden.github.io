@@ -60,13 +60,10 @@ Metalsmith(__dirname)
       }]
    }, /*{
       title: 'About',
-      url: '/about',
+      url: 'about',
     },*/ {
       title: 'Archive',
-      url: 'blog/posts',
-    }, {
-      title: 'Blog',
-      url: 'blog',
+      url: 'posts',
     }, {
       title: 'Home',
       url: '',
@@ -157,12 +154,12 @@ Metalsmith(__dirname)
   linksets: [
     {
       match: { collection: 'posts' },
-      pattern: 'blog/:date/:title',
+      pattern: ':date/:title',
     },
   ],
 }))
 .use(paginate({
-  path: 'blog/page',
+  path: 'page',
 }))
 .use(discoverHelpers())
 .use(discoverPartials())
