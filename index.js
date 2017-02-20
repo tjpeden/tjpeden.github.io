@@ -24,6 +24,8 @@ const remarkableMentions = require('remarkable-mentions');
 
 const striptags          = require('striptags');
 
+console.log('Environment:', process.env.NODE_ENV || 'development');
+
 Metalsmith(__dirname)
 .use(inspect({
   disable: true,
