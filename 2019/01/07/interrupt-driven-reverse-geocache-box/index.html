@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <title>Interrupt-Driven Reverse Geocache Box – Peden Software</title>
+    <meta name="description" content="Reflections on the people who inspire me at thirty.">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@tjpeden">
+    <meta name="twitter:creator" content="@tjpeden">
+    
+    <!-- Open Graph -->
+    <meta name="og:locale" content="en_US">
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="Interrupt-Driven Reverse Geocache Box">
+    <meta name="og:description" content="Reflections on the people who inspire me at thirty.">
+    <meta name="og:url" content="http://localhost:8080/2019/01/07/interrupt-driven-reverse-geocache-box">
+    <meta name="og:site_name" content="Peden Software">
+    <meta name="og:image" content="http://localhost:8080/images/rgb_photos/deployed.jpg">
+    
+    <!-- TODO: Canonical URL -->
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://localhost:8080/stylesheets/vendor/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="http://localhost:8080/stylesheets/main.css">
+    <!-- Webfonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    
+    <link rel="shortcut icon" href="http://localhost:8080/favicon.ico">
+    <link rel="shortcut icon" href="http://localhost:8080/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="http://localhost:8080/images/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:8080/images/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:8080/images/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:8080/images/apple-touch-icon-144x144-precomposed.png">
+    
+  </head>
+  <body id="post" class="feature">
+    <div class="header-menu header-menu-top">
+      <ul class="header-item-container">
+        <li class="header-item-title header-toggle">
+          <a href="#menu"><h2><i class="fa fa-bars"></i></h2></a>
+        </li>
+        <li class="header-item-title">
+          <a href="http://localhost:8080/">
+            <span class="title">Peden Software</span>
+          </a>
+        </li>
+        <li class="header-item">
+          <a href="http://localhost:8080/posts">
+            <h3>Archive</h3>
+          </a>
+        </li>
+            <li class="header-item">
+          <a href="http://localhost:8080/">
+            <h3>Home</h3>
+          </a>
+        </li>
+            <li class="header-item">
+          <a href="http://localhost:8080/search">
+            <h3><i class="fa fa-search"></i></h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="entry-header">
+      <div class="header-title">
+        <div class="header-title-wrap">
+          <h1>Interrupt-Driven Reverse Geocache Box</h1>
+          <h2>
+            <span class="entry-date date published updated">
+              <time datetime="2019-01-06T18:00:00-06:00">January 7, 2019</time>
+            </span>
+          </h2>
+          <p class="entry-reading-time">
+            <i class="fa fa-clock-o"></i>
+            Reading time ~3 minutes
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="main" role="main">
+      <article class="entry">
+        <div class="entry-content">
+          <div class="entry-image-index">
+            <img src="http://localhost:8080/images/rgb_photos/deployed.jpg" alt="Interrupt-Driven Reverse Geocache Box">
+          </div>
+          <h1 class="post-title entry-title">Interrupt-Driven Reverse Geocache Box</h1>
+          <h2>Overview</h2>
+<p>What is a reverse geocache box, you say? In the simplest of terms, it’s like a regular geocache, except you start with the cache locked in a box that is location aware (it has a GPS). You take the box to the appropriate location and it will open up! How do you know what location to take it to, you ask? There is a screen on the top of the box which tells you what direction to go and how far to go in that direction. It’s probably best to bring some maps with you or use Google Maps to try to determine where you really need to go as it only gives you simple distance and direction. Sounds cool, huh?</p>
+<p><img src="/images/rgb_photos/display_again.jpg" alt="RGB Display"></p>
+<h2>Features</h2>
+<p>Oh, you’ve seen projects like this before? What’s so special about our box? Excellent question! We decided to take it a couple steps further. First, we chose to handle power conservation a bit differently. Second, the box doesn’t just open when you get to a single designated location. It’s firmware allows for multiple locations to be set and the box only opens once you have visited each location in order. I know what you’re thinking, it sounds like more trouble than it’s worth. Well, there’s a reason for all of the different locations. The box is to be used in a wedding proposal. The idea is to revisit some of the important memories of their courtship.</p>
+<p>So, what about the “interrupt-driven” part? All the other RGB projects I’ve seen use a Pololu switch to cut power to the MCU. While that is extremely effective, it’s also kind of boring. Our box uses low power modules with sleep functions to reduce their power consumption when not in use. We use a hardware interrupt on the MCU to wake it up and then it wakes up the other modules. It also sports a USB charging circuit so that the 2500mAh battery can be charged and is ready when you need it.</p>
+<p><img src="/images/rgb_photos/prototype.jpg" alt="RGB Prototype"></p>
+<h2>Parts</h2>
+<ul>
+<li><a href="http://www.adafruit.com/product/1625">Teensy 3.1</a></li>
+<li><a href="http://www.adafruit.com/products/7460">Adafruit Ultimate GPS Breakout</a></li>
+<li><a href="http://www.adafruit.com/products/1431">1.5" Color OLED</a></li>
+<li><a href="http://www.adafruit.com/products/328">Lithium Ion Polymer Battery - 3.7v 2500mAh</a></li>
+<li><a href="http://www.adafruit.com/products/259">USB LiIon/LiPoly charger</a></li>
+<li><a href="http://www.adafruit.com/products/169">Micro Servo</a></li>
+<li><a href="http://www.adafruit.com/products/481">Waterproof Metal Pushbutton with Blue LED Ring</a></li>
+<li><a href="http://www.adafruit.com/products/1739">Large Enclosed Piezo Element w/Wires</a></li>
+<li>3 x NDS355AN N-Channel MOSFET</li>
+<li>3 x 330Ω Resistors</li>
+<li>3 x 100kΩ Resistors</li>
+</ul>
+<h2>Tools &amp; Supplies</h2>
+<ul>
+<li><a href="https://www.adafruit.com/categories/84">Soldering Iron</a> + <a href="https://www.adafruit.com/categories/84">Solder</a></li>
+<li><a href="https://www.adafruit.com/product/3889">Ribbon Cable</a></li>
+<li><a href="https://www.adafruit.com/products/291">Helping Third Hands</a> / <a href="https://www.adafruit.com/products/151">Panavise</a></li>
+<li><a href="https://www.adafruit.com/products/1649">Heat Shrink</a></li>
+<li><a href="https://www.adafruit.com/products/527">Wire Stripper</a> / <a href="https://www.adafruit.com/products/152">Cutters</a></li>
+<li>Glue / Mounting Tack</li>
+<li>Filing Tool / Hobby Knife</li>
+</ul>
+<p><img src="/images/rgb_photos/unarmed.jpg" alt="RGB Unlocked">
+&nbsp;
+<img src="/images/rgb_photos/isometric_view.jpg" alt="RGB Isometric"></p>
+<h2>Circuit Diagram</h2>
+<p><img src="/images/rgb_photos/rgb_project_bb.jpg" alt="RGB Circuit Diagram"></p>
+<h3>Pins</h3>
+<pre class="lang-highlight"><code class="language-cpp hljs"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLED_MOSI       11</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLED_CLK        13</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLED_CS         14</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLED_DC         3</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLED_RESET      2</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SD_MISO         12</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SD_CS           10</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PIEZO_PIN       23</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BUTTON_PIN      6</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVOSIGNAL_PIN 5</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STATUS1_PIN     22</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STATUS2_PIN     21</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> OLEDPOWER_PIN   20</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BUTTONLED_PIN   19</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVOPOWER_PIN  18</span>
+</code></pre>
+<p><img src="/images/rgb_photos/soldering_the_power.jpg" alt="RGB Wiring Action"></p>
+<h2>Software</h2>
+<p>All the code used in this project is available on my <a href="https://github.com/tjpeden/interrupt-driven-rgb">Github</a>.</p>
+<p><img src="/images/rgb_photos/test_fit_screen.jpg" alt="RGB Test Fit"></p>
+<h2>Conclusion</h2>
+<p>We did a lot of testing with the prototype, but very little with the actual box, since we ran out of time. However, the box was deployed quite successfully. The GPS and firmware worked flawlessly across 3 states and it locked and unlocked as/when expected.</p>
+<p><img src="/images/rgb_photos/first_reaction.jpg" alt="RGB Reaction"></p>
+<h2>Authors &amp; Contributors</h2>
+<p>TJ Peden (<a href="https://github.com/tpeden">tpeden</a>) is the Engineer and Developer of the project. Patrick Reames (<a href="https://github.com/patrickr">patrickr</a>) designed, planned and deployed the project. Special thanks to Andrew Harmon over at <a href="http://www.fablabtulsa.com/">FabLab Tulsa</a> for all of his help.</p>
+
+          <footer class="entry-meta">
+            <!-- TODO: Tags -->
+            <span class="author vcard"><span class="fn">TJ Peden</span></span>
+          </footer>
+        </div>
+        <div class="read-more">
+          <div class="read-more-header">
+            <a href="http://peden.software" class="read-more-btn">About the Author</a>
+          </div>
+          <div class="read-more-content author-info">
+            <h3>TJ Peden</h3>
+            <div class="author-container">
+              <img src="http://www.gravatar.com/avatar/58e86cb82cc6e15875e584329efbba21?s=150" alt="TJ Peden" class="author-img">
+              <div class="author-bio">I'm a software developer, programming language enthusiast, hardware and software guru, tech fanatic.</div>
+            </div>
+            <div class="author-share">
+              <ul class="list-inline social-buttons">
+                <li>
+                  <a href="https://github.com/tjpeden" title="GitHub" target="_blank">
+                    <i class="fa fa-github-alt fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://codepen.io/tjpeden/" title="CodePen" target="_blank">
+                    <i class="fa fa-codepen fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/tj.peden" title="Facebook" target="_blank">
+                    <i class="fa fa-facebook-official fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/tjpeden" title="Twitter" target="_blank">
+                    <i class="fa fa-twitter fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/tjpeden" title="LinkedIn" target="_blank">
+                    <i class="fa fa-linkedin fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.youtube.com/TheTJPeden" title="YouTube" target="_blank">
+                    <i class="fa fa-youtube-play fa-fw"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.twitch.tv/tjpeden" title="Twitch" target="_blank">
+                    <i class="fa fa-twitch fa-fw"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <section id="disqus_thread"></section>
+      </article>
+    </div>
+
+    <div class="footer-wrapper">
+      <footer class="contentinfo">
+        <span>© 2019 TJ Peden. Powered by <a href="http://www.metalsmith.io/" rel="nofollow">Matalsmith</a> using the <a href="https://github.com/tjpeden/neo-hpstr-metalsmith-theme" rel="nofollow">Neo-HPSTR Metalsmith</a>.</span>
+      </footer>
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-85015540-1', 'auto');
+      ga('require', 'linkid', 'linkid.js');
+      ga('send', 'pageview');
+    </script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58aa85572034f60d"></script>
+    <script src="https://peden-software.disqus.com/embed.js" async="" data-timestamp="Tue Jan 08 2019 10:37:53 GMT-0600 (CST)"></script>
+    <script src="https://peden-software.disqus.com/count.js" async="" id="dsq-count-scr"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+
+</body></html>
