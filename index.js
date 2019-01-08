@@ -1,8 +1,6 @@
 'use strict';
 
 const Metalsmith         = require('metalsmith');
-const lunr               = require('metalsmith-lunr');
-const prism              = require('metalsmith-prism');
 const drafts             = require('metalsmith-drafts');
 const assets             = require('metalsmith-assets');
 const inspect            = require('metalsmith-inspect');
@@ -11,18 +9,16 @@ const inPlace            = require('metalsmith-in-place');
 const paginate           = require('metalsmith-paginate');
 const gravatar           = require('metalsmith-gravatar');
 const excerpts           = require('metalsmith-excerpts');
-const redirect           = require('metalsmith-redirect');
 const relations          = require('metalsmith-relations')['default'];
 const permalinks         = require('metalsmith-permalinks');
 const collections        = require('metalsmith-collections');
+const codeHighlight      = require('metalsmith-code-highlight');
 const discoverHelpers    = require('metalsmith-discover-helpers');
 const discoverPartials   = require('metalsmith-discover-partials');
 const markdownRemarkable = require('metalsmith-markdown-remarkable');
 
 const remarkableEmoji    = require('remarkable-emoji');
 const remarkableMentions = require('remarkable-mentions');
-
-const striptags          = require('striptags');
 
 console.log('Environment:', process.env.NODE_ENV || 'development');
 
@@ -51,23 +47,28 @@ Metalsmith(__dirname)
     locale: 'en_US',
 
     // Site Menu
-   menu: [{
-      title: 'Projects',
-      url: '#',
-      submenu: [{
-        title: 'On The Fence',
-        url: 'on-the-fence',
-      }]
-   }, /*{
-      title: 'About',
-      url: 'about',
-    },*/ {
-      title: 'Archive',
-      url: 'posts',
-    }, {
-      title: 'Home',
-      url: '',
-    }],
+    menu: [
+      // {
+      //   title: 'Projects',
+      //   url: '#',
+      //   submenu: [{
+      //     title: 'On The Fence',
+      //     url: 'on-the-fence',
+      //   }]
+      // },
+      // {
+      //   title: 'About',
+      //   url: 'about',
+      // },
+      {
+        title: 'Archive',
+        url: 'posts',
+      },
+      {
+        title: 'Home',
+        url: '',
+      },
+    ],
 
     // Generator Info
     generator: {
@@ -87,35 +88,43 @@ Metalsmith(__dirname)
       url: "http://peden.software",
       bio: "I'm a software developer, programming language enthusiast, hardware and software guru, tech fanatic.",
       twitter: 'tjpeden',
-      networks: [{
-        name: 'GitHub',
-        icon: 'github-alt',
-        url: "https://github.com/tjpeden",
-      }, {
-        name: 'CodePen',
-        icon: 'codepen',
-        url: "http://codepen.io/tjpeden/",
-      }, {
-        name: 'Facebook',
-        icon: 'facebook-official',
-        url: "https://www.facebook.com/tj.peden",
-      }, {
-        name: 'Twitter',
-        icon: 'twitter',
-        url: "https://twitter.com/tjpeden",
-      }, {
-        name: 'LinkedIn',
-        icon: 'linkedin',
-        url: "https://www.linkedin.com/in/tjpeden",
-      }, {
-        name: 'YouTube',
-        icon: 'youtube-play',
-        url: "https://www.youtube.com/TheTJPeden",
-      }, {
-        name: 'Twitch',
-        icon: 'twitch',
-        url: "https://www.twitch.tv/tjpeden",
-      }],
+      networks: [
+        {
+          name: 'GitHub',
+          icon: 'github-alt',
+          url: "https://github.com/tjpeden",
+        },
+        {
+          name: 'CodePen',
+          icon: 'codepen',
+          url: "http://codepen.io/tjpeden/",
+        },
+        {
+          name: 'Facebook',
+          icon: 'facebook-official',
+          url: "https://www.facebook.com/tj.peden",
+        },
+        {
+          name: 'Twitter',
+          icon: 'twitter',
+          url: "https://twitter.com/tjpeden",
+        },
+        {
+          name: 'LinkedIn',
+          icon: 'linkedin',
+          url: "https://www.linkedin.com/in/tjpeden",
+        },
+        {
+          name: 'YouTube',
+          icon: 'youtube-play',
+          url: "https://www.youtube.com/TheTJPeden",
+        },
+        {
+          name: 'Twitch',
+          icon: 'twitch',
+          url: "https://www.twitch.tv/tjpeden",
+        }
+      ],
     },
   },
 })
@@ -146,9 +155,6 @@ Metalsmith(__dirname)
   .use(remarkableEmoji)
   .use(remarkableMentions())
 )
-.use(prism({
-  lineNumbers: true,
-}))
 .use(excerpts())
 .use(permalinks({
   linksets: [
@@ -168,9 +174,7 @@ Metalsmith(__dirname)
   engine: 'handlebars',
   default: 'page.html',
 }))
-.use(redirect({
-  '/2016/09/13/on-the-fence.html': '/on-the-fence',
-}))
+.use(codeHighlight())
 .use(assets({
   source: './assets',
 }))
