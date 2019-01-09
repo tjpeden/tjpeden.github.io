@@ -174,7 +174,9 @@ Metalsmith(__dirname)
   engine: 'handlebars',
   default: 'page.html',
 }))
-.use(codeHighlight())
+.use(codeHighlight({
+  selector: 'pre > code',
+}))
 .use(assets({
   source: './assets',
 }))

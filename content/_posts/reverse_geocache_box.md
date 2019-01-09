@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: Interrupt-Driven Reverse Geocache Box
-description: Reflections on the people who inspire me at thirty.
+description: A project to help my best friends propose to his (now) wife.
 date: 2019-01-07
 collection: posts
 comments: true
