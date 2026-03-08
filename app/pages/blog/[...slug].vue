@@ -4,13 +4,14 @@ const slugArray = route.params.slug as string[]
 const slug = Array.isArray(slugArray) ? slugArray.join('/') : slugArray
 const path = `/blog/${slug}`
 
-const { data: post } = await useAsyncData(`blog-${slug}`, () =>
+const { data: post, error } = await useAsyncData(`blog-${slug}`, () =>
   queryCollection('blog')
     .path(path)
     .first()
 )
 
-if (!post.value) {
+// Only throw 404 during SSR/prerender, not during client hydration
+if (import.meta.server && !post.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Post not found',
@@ -40,7 +41,19 @@ useSeoMeta({
 </script>
 
 <template>
-  <article v-if="post">
+  <!-- Show nothing during hydration if post is temporarily null -->
+  <div v-if="!post && !error" class="flex items-center justify-center min-h-96">
+    <UIcon name="i-lucide-loader-2" class="w-8 h-8 animate-spin text-primary-500" />
+  </div>
+  
+  <!-- Show error if query failed -->
+  <div v-else-if="error || !post" class="text-center py-20">
+    <h1 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Post not found</h1>
+    <p class="text-zinc-600 dark:text-zinc-400 mb-6">The blog post you're looking for doesn't exist.</p>
+    <UButton to="/blog" variant="soft">Back to Blog</UButton>
+  </div>
+  
+  <article v-else>
     <!-- Hero Section with Featured Image -->
     <header class="mb-10">
       <!-- Back link -->
